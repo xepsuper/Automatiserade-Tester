@@ -20,7 +20,6 @@ class RegistreraTest {
     void TC01_addVisited() {
 
         registeraMetoder.addVisisted(new Naturreservat("Naturlig", "Rinkeby", "2026-02-02"));
-        Naturreservat naturreservat = registeraMetoder.visitedList.getFirst();
         int resultat = registeraMetoder.getNumberOfVisited();
         int expected = 1;
         assertEquals(expected, resultat);
@@ -54,20 +53,55 @@ class RegistreraTest {
     void TC04_noObsArt() {
         testnaturreservat1 = new Naturreservat("rabbi", "sköndal", "2026-03-13");
         testnaturreservat2 = new Naturreservat("kaj", "dalarna", "2026-06-23");
-        testnaturreservat3 = new Naturreservat("tjabas", "gotland", "2024-09-30");
+        testnaturreservat3 = new Naturreservat("tjabbas", "gotland", "2024-09-30");
         registeraMetoder.noObsArt("rabbi");
         String expected = "dalarna";
     }
 
     /**
-     * TC05_getort() kollar om
+     *
      */
     @Test
-    void TC05_getort() {
+    void TC05_getDate() {
         testnaturreservat1 = new Naturreservat("rabbi", "sköndal", "2026-03-13");
         testnaturreservat2 = new Naturreservat("kaj", "dalarna", "2026-06-23");
-        String resultat = testnaturreservat2.getOrt();
-        String expected = "sköndal";
+        String result = testnaturreservat2.getDatum();
+        String expected = "2026-06-23";
+        System.out.println(result);;
+        assertEquals(expected,result);
+
+    }
+    @Test
+    void TC06_getName(){
+        testnaturreservat1 = new Naturreservat("rabbi", "sköndal", "2026-03-13");
+        testnaturreservat2 = new Naturreservat("kaj", "dalarna", "2026-06-23");
+        String result = testnaturreservat2.getNamn();
+        String expected = "kaj";
+        System.out.println(result);;
+        assertEquals(expected,result);
+    }
+    @Test
+    void TC07_getNumberOfVisited(){
+        registeraMetoder.addVisisted(new Naturreservat("Åsa", "Rinkeby", "2026-02-02"));
+        registeraMetoder.addVisisted(new Naturreservat(null, null, null));
+        int resultat = registeraMetoder.getNumberOfVisited();
+        int expected = 1;
         assertEquals(expected, resultat);
     }
+    @Test
+    void TC08_getName(){
+        registeraMetoder.addVisisted(new Naturreservat("Rinkeby", "Åsa", "2026-02-02"));
+        String resultat = registeraMetoder.visitedList.getFirst().getNamn();
+        String expected = "Åsa";
+        assertEquals(expected,resultat);
+
+    }
+    @Test
+    void TC09_getDate(){
+        registeraMetoder.addVisisted(new Naturreservat("Åsa", "Rinkeby",  "2026 tjugotredje oktober"));
+        String resultat = registeraMetoder.visitedList.getFirst().getDatum();
+        String expected = "Åsa";
+        assertEquals(expected,resultat);
+    }
+
 }

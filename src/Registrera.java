@@ -29,7 +29,6 @@ public class Registrera {
      */
     public int getNumberOfVisited() {
         return visitedList.size();
-
     }
 
     /**

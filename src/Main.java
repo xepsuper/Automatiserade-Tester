@@ -25,6 +25,7 @@ public class Main {
         visited.addVisisted(obs4);
         visited.addVisisted(obs5);
 
+
         int totalReports = visited.getNumberOfVisited();
 
 
