@@ -1,12 +1,15 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 class RegistreraTest {
+    private final Registrera registeraMetoder = new Registrera();
 
     @BeforeEach
     void setUp() {
+
     }
 
     /**
@@ -14,6 +17,12 @@ class RegistreraTest {
      */
     @Test
     void TC01_addVisisted() {
+
+        registeraMetoder.addVisisted(new Naturreservat("Naturlig", "Rinkeby", "2026-02-02"));
+        Naturreservat naturreservat = registeraMetoder.visitedList.getFirst();
+        int resultat = registeraMetoder.getNumberOfVisited();
+        int expected = 1;
+        assertEquals(expected, resultat);
     }
 
     /**
