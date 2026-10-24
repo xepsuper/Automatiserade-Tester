@@ -51,10 +51,15 @@ public class Registrera {
     }
 }
     // Nya funktioner
-    public void getSpecificOrt(String inOrt){
-        for( Naturreservat obs : visitedList){
-
+    public List<Naturreservat> getSpecificRegion(String inRegion){
+        List<Naturreservat> newVisitedList = new ArrayList<>();
+        System.out.println(visitedList.size());
+        for( int i = 0; i < visitedList.size(); i++){
+            if (inRegion.equals(visitedList.get(i).getRegion())) {
+                newVisitedList.add(visitedList.get(i));
+            }
         }
+        return newVisitedList;
     }
 
 }

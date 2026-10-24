@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Naturreservat obs1 = new Naturreservat("Vildsvin", "Åkersberga", "2026-01-04)", "Stockholm");
+        Naturreservat obs1 = new Naturreservat("Vildsvin", "Åkersberga", "2026-01-04", "Stockholm");
         Naturreservat obs2 = new Naturreservat("Älg", "Härnösand", "2026-01-07", "Västernorrland");
         Naturreservat obs3 = new Naturreservat("Älg", "Falun", "2026-04-10", "Dalarna");
         Naturreservat obs4 = new Naturreservat("Lo", "Östersund", "2026-04-11", "Jämtland Härjedalen");
@@ -24,6 +24,7 @@ public class Main {
         visited.addVisisted(obs3);
         visited.addVisisted(obs4);
         visited.addVisisted(obs5);
+        visited.addVisisted(new Naturreservat("Får", "Sköndal", "2026-10-24", "Stockholm"));
 
         visited.getOrt("Östersund");
 
@@ -68,12 +69,18 @@ public class Main {
 
                 case 4:
                     System.out.println("Ny funktionalitet...");
+                    List<Naturreservat> lista = visited.getSpecificRegion("Stockholm");
+                    for(Naturreservat naturreservat : lista){
+                        System.out.println(naturreservat.getOrt());
+                    }
                     break;
 
                 case 5:
                     System.out.println("Avslutar KryssLista...");
                     System.exit(0);
                     break;
+
+
             }
 
             if (choice > 5 || choice < 1) {
@@ -81,7 +88,7 @@ public class Main {
                 do {
                     choice = inUser.nextInt();
                 }
-                while (choice < 6);
+                while (choice < 7);
             }
         }
     }

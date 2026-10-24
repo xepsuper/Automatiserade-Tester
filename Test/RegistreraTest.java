@@ -128,4 +128,9 @@ class RegistreraTest {
         assertEquals(expected,resultat);
     }
 
+    void TC10_get(){
+        registeraMetoder.addVisisted(new Naturreservat("Åsa", "Rinkeby", "2026-02-02", "Stockholm"));
+        registeraMetoder.addVisisted(new Naturreservat("Elliot", "Alby", "2026-02-04", "Stockholm"));
+    }
+
 }
