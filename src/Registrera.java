@@ -50,6 +50,12 @@ public class Registrera {
                 if(!obs.getNamn().contains(inNamn) ){ System.out.println(obs.getOrt());  }
     }
 }
+    // Nya funktioner
+    public void getSpecificOrt(String inOrt){
+        for( Naturreservat obs : visitedList){
+
+        }
+    }
 
 }
 

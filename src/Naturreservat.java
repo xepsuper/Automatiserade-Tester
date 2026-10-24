@@ -8,6 +8,7 @@ public class Naturreservat { // konstruktor
     private String namn;
     private String ort;
     private String datum;
+    private String region;
 
     /**
      *
@@ -15,11 +16,16 @@ public class Naturreservat { // konstruktor
      * @param inOrt Inmatas ort
      * @param inDatum Inmatas datum
      */
-    public Naturreservat(String inNamn, String inOrt, String inDatum) {
+    public Naturreservat(String inNamn, String inOrt, String inDatum, String region) {
         this.namn = inNamn;
         this.ort = inOrt;
         this.datum = inDatum;
+        this.region = region;
     }
+
+    public String getRegion() {return region;}
+
+    public void setRegion(String region) {this.region = region;}
 
     /**
      * Hämtar ut namnet enligt naturreservatet

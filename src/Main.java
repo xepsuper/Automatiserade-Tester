@@ -13,11 +13,11 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Naturreservat obs1 = new Naturreservat("Vildsvin", "Åkersberga", "2026-01-04)");
-        Naturreservat obs2 = new Naturreservat("Älg", "Härnösand", "2026-01-07");
-        Naturreservat obs3 = new Naturreservat("Älg", "Falun", "2026-04-10");
-        Naturreservat obs4 = new Naturreservat("Lo", "ÖStersund", "2026-04-11");
-        Naturreservat obs5 = new Naturreservat("Vildsvin", "Östersund", "2026-05-23");
+        Naturreservat obs1 = new Naturreservat("Vildsvin", "Åkersberga", "2026-01-04)", "Stockholm");
+        Naturreservat obs2 = new Naturreservat("Älg", "Härnösand", "2026-01-07", "Västernorrland");
+        Naturreservat obs3 = new Naturreservat("Älg", "Falun", "2026-04-10", "Dalarna");
+        Naturreservat obs4 = new Naturreservat("Lo", "Östersund", "2026-04-11", "Jämtland Härjedalen");
+        Naturreservat obs5 = new Naturreservat("Vildsvin", "Östersund", "2026-05-23","Jämtland Härjedalen");
 
         visited.addVisisted(obs1);
         visited.addVisisted(obs2);
@@ -25,6 +25,7 @@ public class Main {
         visited.addVisisted(obs4);
         visited.addVisisted(obs5);
 
+        visited.getOrt("Östersund");
 
         int totalReports = visited.getNumberOfVisited();
 
