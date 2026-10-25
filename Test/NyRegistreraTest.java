@@ -180,6 +180,12 @@ class NyRegistreraTest {
         System.out.println(expected);
         Assertions.assertEquals(expected, resultat);
     }
+
+    /**
+     * Kollar på vilket användaren vill förändra
+     * Det ändras beroende på av namn
+     * Ändrar på värdet förutom naturreservat namnet
+     */
     @Test
     void TDD9_changeNaturreservat() { //Negativ testfall
         registreraNyaMetoder.visitedList.add(new Naturreservat("Bergsområdet", "Sköndal", "2026-03-15", "Stockholm", 0));
@@ -199,6 +205,12 @@ class NyRegistreraTest {
 
 
     }
+
+    /**
+     * Kollar på vilket användaren vill förändra
+     * Det ändras beroende på av ort och namn
+     * Ändrar på värdet förutom naturreservat namnet
+     */
     @Test
     void TDD10_changeNaturreservat() { //Positiv testfall
         registreraNyaMetoder.visitedList.add(new Naturreservat("Bergsområdet", "Sköndal", "2026-03-15", "Stockholm", 0));
@@ -286,6 +298,7 @@ class NyRegistreraTest {
     }
     /**
      * Hämtar en lista av naturreservat
+     * Det ändras beroende på hur många gånger användaren har besökt
      */
     @Test
     void TDD14_getVisitedList(){ // positiv testfall
