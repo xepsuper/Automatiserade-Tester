@@ -1,8 +1,3 @@
-import javax.sql.rowset.serial.SerialArray;
-import java.sql.Array;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,18 +8,18 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Naturreservat obs1 = new Naturreservat("Vildsvin", "Åkersberga", "2026-01-04", "Stockholm");
-        Naturreservat obs2 = new Naturreservat("Älg", "Härnösand", "2026-01-07", "Västernorrland");
-        Naturreservat obs3 = new Naturreservat("Älg", "Falun", "2026-04-10", "Dalarna");
-        Naturreservat obs4 = new Naturreservat("Lo", "Östersund", "2026-04-11", "Jämtland Härjedalen");
-        Naturreservat obs5 = new Naturreservat("Vildsvin", "Östersund", "2026-05-23","Jämtland Härjedalen");
+        Naturreservat obs1 = new Naturreservat("Vildsvin", "Åkersberga", "2026-01-04", "Stockholm", 0);
+        Naturreservat obs2 = new Naturreservat("Älg", "Härnösand", "2026-01-07", "Västernorrland", 0);
+        Naturreservat obs3 = new Naturreservat("Älg", "Falun", "2026-04-10", "Dalarna", 0);
+        Naturreservat obs4 = new Naturreservat("Lo", "Östersund", "2026-04-11", "Jämtland Härjedalen", 0);
+        Naturreservat obs5 = new Naturreservat("Vildsvin", "Östersund", "2026-05-23","Jämtland Härjedalen", 0);
 
-        visited.addVisisted(obs1);
-        visited.addVisisted(obs2);
-        visited.addVisisted(obs3);
-        visited.addVisisted(obs4);
-        visited.addVisisted(obs5);
-        visited.addVisisted(new Naturreservat("Får", "Sköndal", "2026-10-24", "Stockholm"));
+        visited.addVisited(obs1);
+        visited.addVisited(obs2);
+        visited.addVisited(obs3);
+        visited.addVisited(obs4);
+        visited.addVisited(obs5);
+        visited.addVisited(new Naturreservat("Får", "Sköndal", "2026-10-24", "Stockholm",0));
 
         visited.getOrt("Östersund");
 
@@ -69,10 +64,6 @@ public class Main {
 
                 case 4:
                     System.out.println("Ny funktionalitet...");
-                    List<Naturreservat> lista = visited.getSpecificRegion("Stockholm");
-                    for(Naturreservat naturreservat : lista){
-                        System.out.println(naturreservat.getOrt());
-                    }
                     break;
 
                 case 5:

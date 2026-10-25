@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 /**
  * I det här koden är det en konstruktor som bevara specifika typvärde som tillhör till denna klassen
  */
@@ -9,6 +7,9 @@ public class Naturreservat { // konstruktor
     private String ort;
     private String datum;
     private String region;
+    private int visited;
+// addera unik identifierare för att få fram alla klasser som unika (Kanske)
+
 
     /**
      *
@@ -16,16 +17,13 @@ public class Naturreservat { // konstruktor
      * @param inOrt Inmatas ort
      * @param inDatum Inmatas datum
      */
-    public Naturreservat(String inNamn, String inOrt, String inDatum, String region) {
+    public Naturreservat(String inNamn, String inOrt, String inDatum, String region, int visited) {
         this.namn = inNamn;
         this.ort = inOrt;
         this.datum = inDatum;
         this.region = region;
+        this.visited = visited;
     }
-
-    public String getRegion() {return region;}
-
-    public void setRegion(String region) {this.region = region;}
 
     /**
      * Hämtar ut namnet enligt naturreservatet
@@ -73,5 +71,17 @@ public class Naturreservat { // konstruktor
      */
     public void setDatum(String inDatum) {
         this.datum = datum;
+    }
+
+    public String getRegion() {return region;}
+
+    public void setRegion(String region) {this.region = region;}
+
+    public int getVisited() {
+        return visited;
+    }
+
+    public void setVisited(int visited) {
+        this.visited = visited;
     }
 }

@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
  * Metoderna bevaras vid den här klassen vid senare användning
- * Här körs logiken för alla metoder
+ * Här körs logiken för gamla metoder
  */
 public class Registrera {
     List<Naturreservat> visitedList;
@@ -11,7 +11,6 @@ public class Registrera {
      *  Konstrutkor för arrayList för registrera klassen
      */
     public Registrera() {
-
         visitedList = new ArrayList<>();
     }
 
@@ -19,7 +18,7 @@ public class Registrera {
      * addVisited används för att skapa nya naturreservat som senare ska bevaras i visitedList
      * @param observation matas nya observationer enligt Naturreservat konstruktor
      */
-    public void addVisisted(Naturreservat observation) {
+    public void addVisited(Naturreservat observation) {
         visitedList.add(observation);
     }
 
@@ -50,18 +49,11 @@ public class Registrera {
                 if(!obs.getNamn().contains(inNamn) ){ System.out.println(obs.getOrt());  }
     }
 }
-    // Nya funktioner
-    public List<Naturreservat> getSpecificRegion(String inRegion){
-        List<Naturreservat> newVisitedList = new ArrayList<>();
-        System.out.println(visitedList.size());
-        for( int i = 0; i < visitedList.size(); i++){
-            if (inRegion.equals(visitedList.get(i).getRegion())) {
-                newVisitedList.add(visitedList.get(i));
-            }
-        }
-        return newVisitedList;
-    }
 
+
+    public List<Naturreservat> visitedList() {
+        return visitedList;
+    }
 }
 
 
