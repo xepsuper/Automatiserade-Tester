@@ -73,14 +73,30 @@ public class Naturreservat { // konstruktor
         this.datum = datum;
     }
 
+    /**
+     * Hämtar regionen
+     * @return returnerar regionen
+     */
     public String getRegion() {return region;}
 
+    /**
+     * Byter regionen
+     * @param region inmatas regionen av användarne
+     */
     public void setRegion(String region) {this.region = region;}
 
+    /**
+     * Hämtar besökt
+     * @return returnerar besökning
+     */
     public int getVisited() {
         return visited;
     }
 
+    /**
+     * Ändrar besökning
+     * @param visited nummer som ändras
+     */
     public void setVisited(int visited) {
         this.visited = visited;
     }

@@ -50,10 +50,6 @@ public class Registrera {
     }
 }
 
-
-    public List<Naturreservat> visitedList() {
-        return visitedList;
-    }
 }
 
 

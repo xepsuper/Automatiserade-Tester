@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 /**
  * Här bevaras gamla koden som fick positiva testfall
@@ -25,16 +23,13 @@ public class NyRegistrera {
     }
     /**
      * En önskelista som användaren vill vara med om
-     * @param inWish önskemål som användaren kan ha
+     * @param inNameWish önskemål som användaren kan ha
      * @return returnerar naturreservat som användaren vill ta med
      */
-    public List<Naturreservat> wishlist(String inWish){
+    public List<Naturreservat> wishlist(String inNameWish, String ortWish){
         List<Naturreservat> newVisitedList = new ArrayList<>();
         for( int i = 0; i < visitedList.size(); i++){
-            if (inWish.equals(visitedList.get(i).getRegion())
-                    || inWish.equals(visitedList.get(i).getNamn())
-                    || inWish.equals(visitedList.get(i).getOrt())
-                    || inWish.equals(visitedList.get(i).getDatum()))
+            if (inNameWish.equals(visitedList.get(i).getNamn()) && ortWish.equals(visitedList.get(i).getOrt()))
             {
                 newVisitedList.add(visitedList.get(i));
             }
@@ -42,6 +37,7 @@ public class NyRegistrera {
         System.out.println(newVisitedList.size());
         return newVisitedList;
     }
+    int visitedCount = 0;
     /**
      * Hämtar en ort som användaren vill besöka
      * @param inOrt Orten som anvädnaren besöker
@@ -54,7 +50,8 @@ public class NyRegistrera {
         for (Naturreservat obs : visitedList) {
             if(inOrt.equals(obs.getOrt()) && (inNamn.equals(obs.getNamn())))
             {
-                obs.setVisited(+1);
+                visitedCount++;
+                obs.setVisited(visitedCount);
             }
         }
     }
@@ -74,6 +71,12 @@ public class NyRegistrera {
         return antalVisited;
     }
 
+    /**
+     * Raderar naturreservat baserat på användarens önskemål
+     * @param inNamn Namnet som söks
+     * @param inOrt Orten som söks
+     * @return Antal raderade naturreservat
+     */
     public int removeVisited(String inNamn, String inOrt){
         int antalRaderas = 0;
         for ( int i = 0; i < visitedList.size(); i++) {
@@ -85,49 +88,46 @@ public class NyRegistrera {
         }
         return antalRaderas;
     }
-
+    /**
+     * Ändra attributer för naturreservatet
+     * @param inName Väljer en specifik naturreservat
+     * @param ortChoice väljer en specifik ort
+     * @param inOrt Ändrade ort som matas in
+     * @param getDatum Datum som läggs till
+     * @param setRegion Region som läggs till
+     */
     public List<Naturreservat> changeNaturreservat(String inName, String ortChoice, String inOrt, String getDatum, String setRegion){
         // Kollar inte efter null eller blank
         // Kan dupliceras med samma naturreservat namn
-        List<Naturreservat> newList = new ArrayList<>();
         for(Naturreservat naturreservat : visitedList){
             if (inName.equals(naturreservat.getNamn()) && ortChoice.equals(naturreservat.getOrt())){
                 naturreservat.setOrt(inOrt);
-                if (!getDatum.isEmpty()){
+                if (!inName.isEmpty() && ortChoice.isEmpty() && inOrt.isEmpty() && getDatum.isEmpty() && setRegion.isEmpty()){
                     naturreservat.setDatum(getDatum);
-                }
-                if (!setRegion.isEmpty()){
+                    naturreservat.setOrt(inOrt);
                     naturreservat.setRegion(setRegion);
                 }
-                newList = visitedList;
+
             }
         }
-        return newList;
+        return visitedList;
     }
 
-    public List<Naturreservat> toppLista(){
+    /**
+     * Topplista hämtar de 3 mest besökta naturreservat
+     * Sorteras innan det skickas in
+     * @return Hämtar de tre mest besökta naturreservat
+     */
+    public List<Naturreservat> toppLista() {
         List<Naturreservat> newList = new ArrayList<>();
+        visitedList.sort((a, b) -> Integer.compare(b.getVisited(), a.getVisited()));
 
-        for (int i = 1; i < visitedList.size(); i++) {
-            Naturreservat current = visitedList.get(i);
-            int j = i - 1;
-
-            // Shift elements greater than current to the right
-            while (j >= 0 && visitedList.get(j).getVisited() > current.getVisited()) {
-                visitedList.set(j + 1, visitedList.get(j));
-                j--;
-            }
-
-            // Place current in its correct position
-            visitedList.set(j + 1, current);
-        }
-
-        for ( int i = 0; i < 3; i++){
+        for(int i = 0; i < 3; i++){
             newList.add(visitedList.get(i));
         }
-
-
         return newList;
     }
+
+
 
 }

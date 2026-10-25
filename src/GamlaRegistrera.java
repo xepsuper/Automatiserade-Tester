@@ -6,7 +6,7 @@ import java.util.List;
  */
 public class GamlaRegistrera {
     Registrera registrera = new Registrera();
-    List<Naturreservat> visitedList = registrera.visitedList();
+    List<Naturreservat> visitedList = registrera.visitedList;
 
     /**
      * getSpecificRegion används för att hämtar ut specifika orter i samma region
@@ -16,7 +16,7 @@ public class GamlaRegistrera {
     public List<Naturreservat> getSpecificNameByRegion(String inRegion){
         List<Naturreservat> newVisitedList = new ArrayList<>();
         for( int i = 0; i < visitedList.size(); i++){
-                newVisitedList.add(visitedList.get(i));
+            newVisitedList.add(visitedList.get(i));
         }
         return newVisitedList;
     }
@@ -41,15 +41,18 @@ public class GamlaRegistrera {
         return newVisitedList;
     }
 
+    int visitedCount = 0;
     /**
      * Hämtar en ort som användaren vill besöka
      * @param inOrt Orten som anvädnaren besöker
      */
     public void getOrt(String inOrt) {
+
         for (Naturreservat obs : visitedList) {
             if(inOrt.equals(obs.getOrt()))
             {
-                obs.setVisited(+1);
+                visitedCount++;
+                obs.setVisited(visitedCount);
             }
         }
     }
@@ -97,7 +100,7 @@ public class GamlaRegistrera {
     public List<Naturreservat> changeNaturreservat(String inName, String inOrt, String getDatum, String setRegion){
         // Kollar inte efter null eller blank
         // Kan dupliceras med samma naturreservat namn
-List<Naturreservat> newList = new ArrayList<>();
+        List<Naturreservat> newList = new ArrayList<>();
         for(Naturreservat naturreservat : visitedList){
             if (inName.equals(naturreservat.getNamn())){
                 naturreservat.setOrt(inOrt);
@@ -106,9 +109,13 @@ List<Naturreservat> newList = new ArrayList<>();
                 newList = visitedList;
             }
         }
-    return newList;
+        return newList;
     }
 
+    /**
+     * Topplista hämtar de 3 mest besökta naturreservat
+     * @return Hämtar de tre mest besökta naturreservat
+     */
     public List<Naturreservat> toppLista(){
         List<Naturreservat> newList = new ArrayList<>();
         for (int i = 0; i < 3; i++){
@@ -116,4 +123,6 @@ List<Naturreservat> newList = new ArrayList<>();
         }
         return newList;
     }
+
+
 }
