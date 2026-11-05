@@ -44,7 +44,7 @@ public class Registrera {
      * noObsArt skriver ut ort baserade på vilket namn användaren vill det ska inte tillhöra
      * @param inNamn inmatas oönskade namn
      */
-    public void noObsArt(String inNamn) {
+    public void printOrtForNonMatchingReservat(String inNamn) {
         for (Naturreservat obs : visitedList) {
                 if(!obs.getNamn().contains(inNamn) ){ System.out.println(obs.getOrt());  }
     }

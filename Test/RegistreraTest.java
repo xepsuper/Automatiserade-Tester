@@ -50,11 +50,11 @@ class RegistreraTest {
      * TC04_noObsArt() används för att hämta ut ort om namnet inte finns
      */
     @Test
-    void TC04_noObsArt() {
+    void TC04_printOrtForNonMatchingReservat() {
         registeraMetoder.addVisited(new Naturreservat("Åsa", "Rinkeby", "2026-02-02", "Stockholm",0));
         registeraMetoder.addVisited(new Naturreservat("Robert", "Alby", "2026-02-04", "Stockholm",0));
         registeraMetoder.addVisited(new Naturreservat("Rubi", "sköndal", "2026-05-04", "Stockholm",0));
-        registeraMetoder.noObsArt("Rubi"); // Alla ort förutom sköndal kommer att skrivas
+        registeraMetoder.printOrtForNonMatchingReservat("Rubi"); // Alla ort förutom sköndal kommer att skrivas
         String resultat = "Alby";
         String expected = "Alby";
         assertEquals(expected,resultat);

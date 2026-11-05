@@ -271,6 +271,7 @@ class NyRegistreraTest {
 
     /**
      * Hämtar en lista av naturreservat
+     * Det ändras beroende på hur många gånger användaren har besökt
      */
     @Test
     void TDD13_getVisitedList(){ // negativ testfall
