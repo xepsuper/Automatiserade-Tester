@@ -7,6 +7,7 @@ import java.util.*;
 public class Registrera {
     List<Naturreservat> visitedList;
 
+
     /**
      *  Konstrutkor för arrayList för registrera klassen
      */

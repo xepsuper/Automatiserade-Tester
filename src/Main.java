@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -25,6 +26,13 @@ public class Main {
         visited.addVisited(obs5);
         visited.addVisited(new Naturreservat("Får", "Sköndal", "2026-10-24", "Stockholm", 0));
 
+        newVisited.visitedList.add(obs1);
+        newVisited.visitedList.add(obs2);
+        newVisited.visitedList.add(obs3);
+        newVisited.visitedList.add(obs4);
+        newVisited.visitedList.add(obs5);
+        newVisited.visitedList.add(new Naturreservat("Får", "Sköndal", "2026-10-24", "Stockholm", 0));
+
         visited.getOrt("Östersund");
 
         int totalReports = visited.getNumberOfVisited();
@@ -40,13 +48,10 @@ public class Main {
             System.out.println("2. Lista vilka naturreservat som finns på samma ort.");
             System.out.println("3. Lista naturreservat som har besökts ett visst datum.");
             System.out.println("4. Hämta naturreservat beroende på region.");
-            System.out.println("5. Lägg till önskat naturreservat (wishlist).");
-            System.out.println("6. Hämta specifik ort och namn.");
-            System.out.println("7. Lista besökta naturreservat via namn.");
-            System.out.println("8. Ta bort ett besökt naturreservat.");
-            System.out.println("9. Ändra ett naturreservat.");
-            System.out.println("10. Visa topplista över mest besökta platser.");
-            System.out.println("11. Avsluta ViltLogg");
+            System.out.println("5. Hämta specifik ort och namn.");
+            System.out.println("6. Lista besökta naturreservat via namn.");
+            System.out.println("7. Visa topplista över mest besökta platser.");
+            System.out.println("8. Avsluta ViltLogg");
             System.out.println("-------------------------------");
             System.out.print("\nAnge ditt val: ");
 
@@ -81,7 +86,7 @@ public class Main {
                         System.out.println("Felaktigt datumformat. Använd ÅÅÅÅ-MM-DD.");
                         break;
                     }
-                    noneObs(chDate);
+                    printOrtFromNonMatchingReserveat(chDate);
                     break;
 
                 case 4:
@@ -94,23 +99,8 @@ public class Main {
                     getSpecificNaturreservat(region);
                     break;
 
-                case 5:
-                    System.out.print("Ange naturreservat (namn): ");
-                    String wishName = in.nextLine();
-                    if (wishName.isEmpty()) {
-                        System.out.println("Namn får inte vara tomt.");
-                        break;
-                    }
-                    System.out.print("Ange ort: ");
-                    String wishOrt = in.nextLine();
-                    if (wishOrt.isEmpty()) {
-                        System.out.println("Ort får inte vara tom.");
-                        break;
-                    }
-                    wishListMethod(wishName, wishOrt);
-                    break;
 
-                case 6:
+                case 5:
                     System.out.print("Ange ort: ");
                     String specOrt = in.nextLine();
                     if (specOrt.isEmpty()) {
@@ -126,7 +116,7 @@ public class Main {
                     getSpecficOrt(specOrt, specNamn);
                     break;
 
-                case 7:
+                case 6:
                     System.out.print("Ange naturreservat (namn): ");
                     String visitedName = in.nextLine();
                     if (visitedName.isEmpty()) {
@@ -136,61 +126,12 @@ public class Main {
                     visitedNaturreservat(visitedName);
                     break;
 
-                case 8:
-                    System.out.print("Ange ort: ");
-                    String removeOrt = in.nextLine();
-                    if (removeOrt.isEmpty()) {
-                        System.out.println("Ort får inte vara tom.");
-                        break;
-                    }
-                    System.out.print("Ange namn: ");
-                    String removeNamn = in.nextLine();
-                    if (removeNamn.isEmpty()) {
-                        System.out.println("Namn får inte vara tomt.");
-                        break;
-                    }
-                    removeVisted(removeOrt, removeNamn);
-                    break;
 
-                case 9:
-                    System.out.print("Ange namn: ");
-                    String chName = in.nextLine();
-                    if (chName.isEmpty()) {
-                        System.out.println("Namn får inte vara tomt.");
-                        break;
-                    }
-                    System.out.print("Ange ort (val): ");
-                    String chOrtChoice = in.nextLine();
-                    if (chOrtChoice.isEmpty()) {
-                        System.out.println("Ort får inte vara tom.");
-                        break;
-                    }
-                    System.out.print("Ange ny ort: ");
-                    String chNewOrt = in.nextLine();
-                    if (chNewOrt.isEmpty()) {
-                        System.out.println("Ny ort får inte vara tom.");
-                        break;
-                    }
-                    System.out.print("Ange nytt datum (ÅÅÅÅ-MM-DD): ");
-                    String chDatum = in.nextLine();
-                    if (!chDatum.matches("\\d{4}-\\d{2}-\\d{2}")) {
-                        System.out.println("Felaktigt datumformat. Använd ÅÅÅÅ-MM-DD.");
-                        break;
-                    }
-                    System.out.print("Ange ny region: ");
-                    String chRegion = in.nextLine();
-                    if (chRegion.isEmpty()) {
-                        System.out.println("Region får inte vara tom.");
-                        break;
-                    }
-                    changeNaturreservat(chName, chOrtChoice, chNewOrt, chDatum, chRegion);
-                    break;
-
-                case 10:
+                case 7:
                     toppLista();
                     break;
 
-                case 11:
+                case 8:
                     System.out.println("Avslutar ViltLogg...");
                     inputLoop = false;
                     break;
@@ -219,10 +160,10 @@ public class Main {
 
     /**
      * Orten som inte kommer att tas med
-     * @param inArt oönskade ort som användaren inmatas
+     * @param inOrt oönskade ort som användaren inmatas
      */
-    static public void noneObs(String inArt){
-        visited.printOrtForNonMatchingReservat(inArt);
+    static public void printOrtFromNonMatchingReserveat(String inOrt){
+        visited.printOrtForNonMatchingReservat(inOrt);
 
     }
 
@@ -231,17 +172,16 @@ public class Main {
      * @param Region Regionen som inmatas av användaren
      */
     public static void getSpecificNaturreservat(String Region){
-        newVisited.getSpecificNameByRegion(Region);
+        List<Naturreservat> list = newVisited.getSpecificNameByRegion(Region);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("\n" + list.get(i).getNamn()
+                    +"\n" + list.get(i).getOrt()
+                    +"\n" + list.get(i).getDatum()
+                    +"\n" + list.get(i).getRegion()
+                    +"\n");
+        }
     }
 
-    /**
-     *
-     * @param inNameWish Naturreservat som användaren önskar
-     * @param ortWish Ort som användaren önskar
-     */
-    public static void wishListMethod(String inNameWish, String ortWish){
-        newVisited.wishlist(inNameWish,ortWish);
-    }
 
     /**
      *
@@ -253,39 +193,26 @@ public class Main {
     }
 
     /**
-     *
-     * @param naturreservat
+     * Hämtar antal gånger användaren har besökt naturreseservatet
+     * @param naturreservat Namnet på naturreservatet
      */
     public static void visitedNaturreservat(String naturreservat){
-        newVisited.getSpecificVisitedByNaturreservat(naturreservat);
-    }
-
-    /**
-     *
-     * @param inOrt Ort som använderen väljer
-     * @param inNamn Namn som användaren väljer
-     */
-    public static void removeVisted(String inOrt, String inNamn){
-        newVisited.removeVisited(inOrt, inNamn);
-    }
-
-    /**
-     *
-     * @param inName Naturreservat som användaren väljer
-     * @param ortChoice Ort som användaren väljer
-     * @param inOrt Ort som användaren vill ändra
-     * @param getDatum Datum som användaren vill ändra
-     * @param setRegion Region som användaren vill ändra
-     */
-    public static void changeNaturreservat(String inName, String ortChoice, String inOrt, String getDatum, String setRegion){
-        newVisited.changeNaturreservat(inName, ortChoice, inOrt, getDatum, setRegion);
+        System.out.println(newVisited.getSpecificVisitedByNaturreservat(naturreservat));
     }
 
     /**
      *  Hämtar en topplista av de mest besökta platser i en ordning
      */
     public static void toppLista(){
-        newVisited.toppLista();
+        System.out.println();
+        List<Naturreservat> list = newVisited.toppLista();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("\n" + list.get(i).getNamn()
+                    +"\n" + list.get(i).getOrt()
+                    +"\n" + list.get(i).getDatum()
+                    +"\n" + list.get(i).getRegion()
+                    +"\n");
+        }
     }
 
 }
